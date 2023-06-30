@@ -31,8 +31,10 @@
                                 <div class="modal fade" id="exampleModalCenter{{ $addressDestination->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
-                                        <form action="{{ url('update/alamat/'. Auth::user()->id) }}" method="post">
+                                        <form action="{{ url('update/single-alamat/'. Auth::user()->id) }}" method="post">
                                             @csrf
+                                            <input type="hidden" name="prod_id" id="prod_id" value="{{ $itemproduk->id }}">
+                                                <input type="hidden" name="qty" id="qty" value="{{ $qty }}">
                                             <div class="modal-header text-center">
                                             <h5 class="modal-title fw-bold" id="exampleModalLongTitle">Ubah Alamat</h5>
                                             </div>
@@ -40,30 +42,21 @@
                                                 <div class="form-group">
                                                     <label for="province">Provinsi</label>
                                                    <select name="provinces_id" id="provinces_id" class="form-control">
-                                                    <option value="" selected>Pilih Provinsi</option>
-                                                    @foreach ($provinces as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                                    <option value="{{ $item->province->id }}"  selected>{{ $item->province->title }}</option>
+                                                    @foreach ($provinces as $items)
+                                                        <option value="{{ $items->id }}">{{ $items->title }}</option>
                                                     @endforeach
                                                    </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="citi">Kota</label>
                                                    <select name="cities_id" id="cities_id" class="form-control">
-                                                    <option>Pilih Kota</option>
+                                                    <option value="{{ $item->city->id }}" >{{ $item->city->title }}</option>
                                                    </select>
                                                 </div>
-                                                {{-- <div class="form-group">
-                                                    <label for="kirim">Pilih Ekspedisi</label>
-                                                    <select name="courier" id="courier" class="form-control">
-                                                        <option value="" selected>-- Pilih --</option>
-                                                        <option value="jne">JNE</option>
-                                                        <option value="tiki">TIKI</option>
-                                                        <option value="pos">POS Indonesia</option>
-                                                    </select>
-                                                </div> --}}
                                                 <div class="form-group">
                                                     <label for="province">Alamat Lengkap</label>
-                                                    <textarea name="alamat" id="" class="form-control" cols="30" rows="10"></textarea>
+                                                    <textarea name="alamat" id="" class="form-control" cols="30" rows="10">{{ $item->alamat }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -238,18 +231,11 @@
                                                 <h4 class="modal-title fw-bold" id="exampleModalLongTitle">Selesaikan Pembayaran</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="form-group text-start">
-                                                        <h6>BANK Kami</h6>
-                                                        <p>
-                                                            BANK BRI (a.n JSP) <br>
-                                                            BANK BCA (a.n JSP)
-                                                        </p>
-                                                    </div>
                                                     <div class="form-group text-start mt-3">
                                                         <h6 for="bank">Nomor Rekening</h6>
                                                         <p>
-                                                            5926 15643 65464 (BRI) <br>
-                                                            3396 64646 55636 (BCA)
+                                                            5926 15643 65464 (BRI a.n JSP) <br>
+                                                            3396 64646 55636 (BCA a.n JSP)
                                                         </p>
                                                     </div>
                                                     <div class="form-group text-start mt-3">

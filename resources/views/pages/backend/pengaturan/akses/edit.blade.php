@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label for="exampleInputName1">No. Telepon</label>
                     <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"  placeholder="No. Telepon"
-                     value="{{ $item->phone }}" required>
+                     value="{{ $item->phone }}">
                     @error('phone')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -61,7 +61,7 @@
                  <div class="form-group">
                     <label for="province">Provinsi</label>
                    <select name="provinces_id" id="provinces_id" class="form-control">
-                    <option value="" selected>{{ $item->province->title }}</option>
+                    <option value="{{ $item->province->id }}" selected>{{ $item->province->title }}</option>
                     @foreach ($provinces as $Prov)
                         <option value="{{ $Prov->id }}">{{ $Prov->title }}</option>
                     @endforeach
@@ -70,7 +70,7 @@
                 <div class="form-group">
                     <label for="citi">Kota</label>
                    <select name="cities_id" id="cities_id" class="form-control">
-                    <option>{{ $item->city->title}}</option>
+                    <option value="{{ $item->city->id }}">{{ $item->city->title}}</option>
                     {{-- @foreach ($cities as $item)
                         <option value="{{ $item->id }}">{{ $item->title }}</option>
                     @endforeach --}}

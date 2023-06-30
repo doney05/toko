@@ -56,19 +56,6 @@ class LoginController extends Controller
         return back()->withErrors([
             'username' => 'Maaf username atau password Anda salah',
         ])->onlyInput('username');
-        // $credentials = $request->getCredentials();
-        // if(!Auth::validate($credentials)):
-        //     return redirect()->route('login.index')
-        //     ->withErrors(trans('auth.failed'));
-        // endif;
-
-        // $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
-        // dd($user);
-
-        // Auth::login($user);
-
-        // return $this->authenticated($request, $user);
     }
 
     public function logout()

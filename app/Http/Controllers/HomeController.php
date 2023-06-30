@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $produk = Product::all();
-        return view('pages.frontend.beranda', $produk);
+        return view('pages.frontend.beranda', compact('produk'));
     }
     public function produk($id)
     {
@@ -152,21 +152,8 @@ class HomeController extends Controller
                     DB::table('cart_detail')->where('carts_id', $da['carts_id'])->update($da);
 
                     // dd($item);
-
-                    // array_push($data, $da);
                 }
-                // dd($idCart, $data);
-
-                // if ($data == $idCart) {
-                //     DB::table('cart_detail')->update($data);
-                // } else {
-                //     DB::table('cart_detail')->ins($data);
-
-                // }
                 return redirect()->route('checkout', $id);
-
-                // DB::table('cart_detail')->update($data);
-                // return redirect()->back()->with('error', 'Produk '. $idCart[0]['cart']['item']['name'] .' sudah didalam! Hapus keranjang terlebih dahulu');
             } else {
                 for ($i=0; $i < sizeof($check) ; $i++) {
                     $data = array(
@@ -222,26 +209,31 @@ class HomeController extends Controller
             'courier' => 'jne'
         ]);
         $data = json_decode($responseCost, true);
+        $item = User::with(['province', 'city'])->findOrFail(Auth::user()->id);
 
         // return response()->json([$itemproduk, $total, $qty, $user]);
-        return view('pages.frontend.single-checkout', compact('itemproduk','total', 'qty', 'user', 'addressDestination', 'destinasi','provinces', 'data'));
+        return view('pages.frontend.single-checkout', compact('item', 'itemproduk','total', 'qty', 'user', 'addressDestination', 'destinasi','provinces', 'data'));
     }
     public function singleCheckout(Request $request, $id)
     {
-        dd($request->all());
-        $itemproduk = ProductItem::with('product','productlist')->find($request->id);
-        $total = $itemproduk->price * $request->qty;
-        $qty = $request->qty;
+
+        $itemproduk = ProductItem::with('product','productlist')->find($id);
+        // dd($request->all(), $itemproduk);
+        $total = $itemproduk->price * $request->qty_two;
+        $qty = $request->qty_two;
         $user = $request->user_id;
         $weight = $itemproduk->weight * $qty;
 
+        // dd($total, $qty, $user, $weight);
         $addressOrigin = Address::with(['province.citi', 'city'])->first();
         $addressDestination = User::with(['province.citi', 'city'])->find($user);
 
+        // dd($addressOrigin, $addressDestination);
         $destinasi = $addressDestination->cities_id;
         $origin = $addressOrigin->cities_id;
         $provinces = Province::get();
 
+        // dd($destinasi, $origin, $provinces);
         $responseCity = Http::withHeaders([
             'key' => 'acd066adeb9c7cd8601e3ca09e4e2a51'
         ])->get('https://api.rajaongkir.com/starter/city');
@@ -255,9 +247,10 @@ class HomeController extends Controller
             'courier' => 'jne'
         ]);
         $data = json_decode($responseCost, true);
+        $item = User::with(['province', 'city'])->findOrFail(Auth::user()->id);
 
         // return response()->json([$itemproduk, $total, $qty, $user]);
-        return view('pages.frontend.single-checkout', compact('itemproduk','total', 'qty', 'user', 'addressDestination', 'destinasi','provinces', 'data'));
+        return view('pages.frontend.single-checkout', compact('item', 'itemproduk','total', 'qty', 'user', 'addressDestination', 'destinasi','provinces', 'data'));
     }
 
     // HALAMAN CHECKOUT
@@ -372,6 +365,8 @@ class HomeController extends Controller
 
     public function singleCekongkir(Request $request, $id)
     {
+        $item = User::with(['province', 'city'])->findOrFail(Auth::user()->id);
+
         // dd($request->all());
         $addressOrigin = Address::with(['province.citi', 'city'])->first();
         $addressDestination = User::with(['province.citi', 'city'])->find(Auth::user()->id);
@@ -413,7 +408,7 @@ class HomeController extends Controller
         $kurir = strtoupper($data['rajaongkir']['results'][0]['code']);
         $kode_kurir = $ongkos[0]['description'];
         // dd($kurir, $kode_kurir);
-        return view('pages.frontend.single-checkout', compact(
+        return view('pages.frontend.single-checkout', compact('item',
         'itemproduk','total', 'qty','addressDestination', 'destinasi',
         'kurir', 'kode_kurir', 'provinces', 'data', 'ongkos'));
     }
@@ -474,10 +469,57 @@ class HomeController extends Controller
         return redirect()->route('checkout', $id);
     }
 
+    public function updateSinglealamat(Request $request, $id)
+    {
+        // dd($request->all());
+        $items = User::findOrFail($id);
+        $data = [
+            'provinces_id' => $request->provinces_id,
+            'cities_id' => $request->cities_id,
+            'alamat' => $request->alamat
+        ];
+        $items->update($data);
+
+        $itemproduk = ProductItem::with('product','productlist')->find($request->prod_id);
+        // dd($request->all(), $itemproduk);
+        $total = $itemproduk->price * $request->qty;
+        $qty = $request->qty;
+        $user = $request->user_id;
+        $weight = $itemproduk->weight * $qty;
+
+        // dd($total, $qty, $weight);
+        $addressOrigin = Address::with(['province.citi', 'city'])->first();
+        $addressDestination = User::with(['province.citi', 'city'])->find(Auth::user()->id);
+
+        // dd($addressOrigin, $addressDestination);
+        $destinasi = $addressDestination->cities_id;
+        $origin = $addressOrigin->cities_id;
+        $provinces = Province::get();
+
+        // dd($destinasi, $origin, $provinces);
+        $responseCity = Http::withHeaders([
+            'key' => 'acd066adeb9c7cd8601e3ca09e4e2a51'
+        ])->get('https://api.rajaongkir.com/starter/city');
+
+        $responseCost = Http::withHeaders([
+            'key' => 'acd066adeb9c7cd8601e3ca09e4e2a51'
+        ])->post('https://api.rajaongkir.com/starter/cost', [
+            'origin' => $origin,
+            'destination' => $destinasi,
+            'weight' => $weight,
+            'courier' => 'jne'
+        ]);
+        $data = json_decode($responseCost, true);
+        $item = User::with(['province', 'city'])->findOrFail(Auth::user()->id);
+
+        // return response()->json([$itemproduk, $total, $qty, $user]);
+        return view('pages.frontend.single-checkout', compact('item', 'itemproduk','total', 'qty', 'user', 'addressDestination', 'destinasi','provinces', 'data'));
+    }
+
     //MULTIPLE PAYMENT
     public function payment(Request $request, $id)
     {
-        // dd($request->all());
+        dd($request->all());
         $user = User::with(['cart.item', 'detail.cart.item'])->where('id', $id)->get()->toArray();
 
         $pes = Pesanan::where('users_id', Auth::user()->id)->first();
@@ -552,48 +594,8 @@ class HomeController extends Controller
                 // dd($a);
                 DB::table('payment_details')->insert($data2);
                 // dd($a);
-                // $prod_up = [
-                //     'id' => $item[$i]['id'],
-                //     'products_id' => $item[$i]['products_id'],
-                //     'product_lists_id' => $item[$i]['product_lists_id'],
-                //     'thumbnail' => $item[$i]['thumbnail'],
-                //     'name' => $item[$i]['name'],
-                //     'description' => $item[$i]['description'],
-                //     'price' => $item[$i]['price'],
-                //     'stock' => $item[$i]['stock'],
-                //     'weight' => $item[$i]['weight'],
-                //     'qty' => $kuan[$i],
-                //     'isi' => $item[$i]['isi'],
-                //     'jenis' => $item[$i]['jenis']
-                // ];
-                // DB::table('product_items')->update($prod_up);
-            // $aaa = DB::table('product_items')->update($prod_up);
-            // dd($item);
-
-            // for ($i=0; $i < sizeof($item); $i++) {
-            // $prod_up = array();
-            // foreach ($hasil as $value) {
-            //     // for ($i=0; $i < sizeof($item); $i++) {
-            //     //     dd($value[$i]['name']);
-            //     // }
-            //         $prod_up = [
-            //             'products_id' => $item[$value]['products_id'],
-            //             'product_lists_id' => $item[$value]['product_lists_id'],
-            //             'thumbnail' => $item[$value]['thumbnail'],
-            //             'name' => $item[$value]['name'],
-            //             'description' => $item[$value]['description'],
-            //             'price' => $item[$value]['price'],
-            //             'stock' => $item[$value]['stock'],
-            //             'weight' => $item[$value]['weight'],
-            //             // 'qty' => $kuan[$i],
-            //             'isi' => $item[$value]['isi'],
-            //             'jenis' => $item[$value]['jenis']
-            //         ];
-            //     // $item[$value]->update($prod_up);
-            //     dd($prod_up);
-            // }
-            // DB::table('payments')->insert($data);
-        }
+            }
+            CartDetail::where('users_id', Auth::user()->id)->delete();
 
         return view('pages.frontend.checkout-success');
     }

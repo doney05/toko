@@ -76,4 +76,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(PaymentDetail::class, 'users_id');
     }
+    public function rekap()
+    {
+        return $this->hasMany(RekapJual::class, 'users_id');
+    }
 }

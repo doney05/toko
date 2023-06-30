@@ -8,6 +8,7 @@ use App\Models\PaymentDetail;
 use App\Models\Pesanan;
 use App\Models\ProductItem;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class StatusController extends Controller
 {
@@ -36,9 +37,21 @@ class StatusController extends Controller
     public function sampai(Request $request, $id)
     {
         $payment = Payment::with(['user.detail', 'user.cart.item', 'pesanan', 'paymentdetail.item.productlist'])->where('users_id', $id)->orderBy('id', 'DESC')->get();
+        $payments = Payment::with(['user.detail', 'user.cart.item', 'pesanan', 'paymentdetail.item.productlist'])->where('users_id', $id)->where('status', '=', 3)->orderBy('id', 'DESC')->get();
         $hasil = Payment::with(['user.detail', 'user.cart.item'])->where('users_id', $id)->where('status', '=', 3)->get()->count();
+        // Payment::with(['user.detail', 'user.cart.item'])->where('users_id', $id)->where([['status', '=', 3], ['created_at', '<', Carbon::now()->addDays()]])->get()->count();
+        $now = Carbon::now();
 
-        return view('pages.frontend.status-pengiriman.sampai', compact('payment', 'hasil'));
+        $h = array();
+        foreach ($payments as $value) {
+            if (Carbon::parse($value->created_at)->addDays(1)->format('Y-m-d') < $now) {
+                Payment::with(['user.detail', 'user.cart.item'])->where('users_id', $id)->where('status', '=', 3)->delete();
+            }
+        }
+        $time = Carbon::parse('2023/06/14 13:00:00')->addMinutes(4)->format('Y-m-d H:i');
+
+        // dd($time, $now);
+        return view('pages.frontend.status-pengiriman.sampai', compact('payment', 'hasil', 'now','time', 'h'));
     }
     public function detail(Request $request, $id)
     {
@@ -52,8 +65,14 @@ class StatusController extends Controller
     public function batal(Request $request, $id)
     {
         $payment = Payment::with(['user.detail', 'user.cart.item', 'pesanan', 'paymentdetail.item.productlist'])->where('users_id', $id)->orderBy('id', 'DESC')->get();
+        $payments = Payment::with(['user.detail', 'user.cart.item', 'pesanan', 'paymentdetail.item.productlist'])->where('users_id', $id)->where('status', '=', 4)->orderBy('id', 'DESC')->get();
         $hasil = Payment::with(['user.detail', 'user.cart.item'])->where('users_id', $id)->where('status', '=', 4)->get()->count();
 
+        foreach ($payments as $value) {
+            if (Carbon::parse($value->created_at)->addDays(1)->format('Y-m-d') < $now) {
+                Payment::with(['user.detail', 'user.cart.item'])->where('users_id', $id)->where('status', '=', 4)->delete();
+            }
+        }
         return view('pages.frontend.status-pengiriman.batal', compact('payment', 'hasil'));
     }
 

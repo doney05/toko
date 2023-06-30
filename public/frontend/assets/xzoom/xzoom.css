@@ -11,19 +11,19 @@
 /* --------------- */
 
 /* xZoom Styles below */
-.xzoom-container { 
+/* .xzoom-container {
   display: inline-block;
-}
+} */
 
 .xzoom-thumbs {
   text-align: center;
   margin-bottom: 10px;
 }
 
-.xzoom { 
+.xzoom {
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);  
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
 }
 .xzoom2, .xzoom3, .xzoom4, .xzoom5 {
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
@@ -79,7 +79,7 @@
 .xactive {
   -webkit-box-shadow: 0px 0px 3px 0px rgba(74,169,210,1);
   -moz-box-shadow: 0px 0px 3px 0px rgba(74,169,210,1);
-  box-shadow: 0px 0px 3px 0px rgba(74,169,210,1); 
+  box-shadow: 0px 0px 3px 0px rgba(74,169,210,1);
   border: 1px solid #4aaad2;
 }
 

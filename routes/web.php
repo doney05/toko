@@ -51,8 +51,9 @@ Route::post('cekOngkir/{id}', [HomeController::class, 'cekOngkir']);
 Route::post('upload-bukti/{id}', [HomeController::class, 'payment']);
 
 //Single product
+Route::post('update/single-alamat/{id}', [HomeController::class, 'updateSinglealamat']);
 Route::post('checkout-beli/{id}', [HomeController::class, 'checkoutBeli']);
-Route::get('produk/single-checkout/{id}', [HomeController::class, 'singleCheckout']);
+Route::get('produk/single-checkout/{id}', [HomeController::class, 'singleCheckout'])->name('singleCheckout');
 Route::get('singleongkir/{ongkir}/{id}/{qty}', [HomeController::class, 'singleOngkir']);
 Route::post('singleCekongkir/{id}', [HomeController::class, 'singleCekongkir']);
 Route::post('bukti-upload/{id}', [HomeController::class, 'singlePayment']);
@@ -142,6 +143,8 @@ Route::group(['middleware' => ['auth','admin:1']], function() {
     Route::delete('admin/riwayat/batal/delete/{id}', [RiwayatController::class, 'deletebatal'])->name('riwayat.batal.delete');
     Route::get('admin/invoice/{id}', [RiwayatController::class, 'invoice'])->name('admin.invoice');
 
+    //Rekap Penjualan
+    Route::get('admin/rekap/index', [RekapController::class, 'index'])->name('rekap.index');
 
     //Akses Kompetitor
     Route::get('admin/akses/index', [UserController::class, 'index'])->name('akses.index');

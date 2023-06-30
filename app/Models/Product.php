@@ -18,4 +18,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductItem::class, 'products_id', 'id');
     }
+    public function rekap()
+    {
+        return $this->hasMany(RekapJual::class, 'products_id');
+    }
 }

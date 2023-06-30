@@ -40,27 +40,26 @@
                          <div class="cart-semua " >
                              <div class="pilih-semua mb-3" data-id="{{ $cart->id}}">
                                  <div class="row d-flex align-items-center w-100" >
-                                     <div class="col-3 d-flex" style="justify-content: space-evenly;">
+                                     <div class="col-3 col-sm-3 col-md-3 col-lg-3 d-flex" style="justify-content: space-evenly;">
                                          <input type="checkbox" name="status[]" class="child-cb" id="child-cb" value="{{ $cart->id  }}"
                                          price-id="{{ $cart->item->price * $cart->qty }}" weight-id="{{ $cart->item->weight * $cart->qty }}"
                                          qty-id="{{ $cart->qty }}">
                                          {{-- <input type="checkbox" name="weight[]" id="weight-cb" class="weight-cb" value="{{ $cart->item->weight * $cart->qty }}"> --}}
- <input type="hidden" name="id[]" value="{{ $cart->id  }}" class="price-product">
- <input type="hidden" name="weight[]" value="{{ $cart->item->weight * $cart->qty }}" class="weight-product">
+                                        <input type="hidden" name="id[]" value="{{ $cart->id  }}" class="price-product">
+                                        <input type="hidden" name="weight[]" value="{{ $cart->item->weight * $cart->qty }}" class="weight-product">
 
-                                     {{-- <input type="checkbox" name="status[]" class="child-cb" id="child-cb" value="{{ $cart->id  }}"
-                                     price="{{ $cart->item->price * $cart->qty }}" hidden> --}}
-                                     <input type="hidden" name="harga" value="{{ $cart->item->price * $cart->qty }}" id="harga-total" class="harga">
-                                     <input type="hidden" class="cart_id" value="{{ $cart->id }}" id="cart_id">
-                                     <img src="{{ Storage::url($cart->item->thumbnail) }}" alt="" style="width: 50%">
-                                 </div>
-                                 <div class="col-4">
-                                     <div class="title d-flex" style="font-size: 1em; font-weight: bold;">
-                                         <p>{{ $cart->listitem->name }}</p>
-                                         <p>&nbsp;&nbsp; - &nbsp;&nbsp;</p>
-                                         <p class="text-black mb-0">{{ $cart->item->name }}</p>
+                                        {{-- <input type="checkbox" name="status[]" class="child-cb" id="child-cb" value="{{ $cart->id  }}"
+                                        price="{{ $cart->item->price * $cart->qty }}" hidden> --}}
+                                        <input type="hidden" name="harga" value="{{ $cart->item->price * $cart->qty }}" id="harga-total" class="harga">
+                                        <input type="hidden" class="cart_id" value="{{ $cart->id }}" id="cart_id">
+                                        <img src="{{ Storage::url($cart->item->thumbnail) }}" alt="">
+                                    </div>
+                                 <div class="col-4 col-sm-4 col-md-4 col-lg-4 datprod">
+                                     <div class="title d-flex">
+                                         <p>{{ $cart->listitem->name }}
+                                        &nbsp;&nbsp; - &nbsp;&nbsp; <span>{{ $cart->item->name }}</span></p>
                                      </div>
- <input type="hidden" name="price[]" value="{{ $cart->item->price * $cart->qty}}" class="price-product">
+                                    <input type="hidden" name="price[]" value="{{ $cart->item->price * $cart->qty}}" class="price-product">
                                      <p  style="font-weight: bold; font-size: 0.7em">Rp. {{ number_format($cart->item->price)}}/{{ $cart->item->jenis }}</p>
                                      <input type="hidden" name="price-product" value="{{ $cart->item->price }}" class="price-product" id="price-product">
 
@@ -68,9 +67,9 @@
                                     <input type="hidden" name="weight" value="{{ $cart->item->weight }}" class="berat" id="berat">
 
                                  </div>
-                                 <div class="col-5 head-quantity" data-item="{{ $cart->id}}">
-                                    <div class="row d-flex justify-content-end align-items-baseline">
-                                     <div class="col-7" style="display: contents">
+                                 <div class="col-5 col-sm-5 col-md-5 col-lg-5 head-quantity" data-item="{{ $cart->id}}">
+                                    <div class="row d-flex align-items-baseline">
+                                     <div class="col-4 col-sm-4 col-md-4 col-lg-7">
 
                                          <input type="hidden" class="id_product" value="{{ $cart->item->id }}" id="id_product">
                                          <div class="quantity " >
@@ -78,18 +77,18 @@
                                                  <i class="fa-solid fa-plus" style="color: #FF9900;"></i>
                                              </button>
 
- <input type="hidden" name="kuantiti[]" value="{{ $cart->qty }}" class="qty update" class="qty-product">
+                                            <input type="hidden" name="kuantiti[]" value="{{ $cart->qty }}" class="qty update" class="qty-product">
                                              <input type="text" name="qty" value="{{ $cart->qty }}" class="qty update" id="qty" style="background: none;">
                                              <button class="minus-btn changeQuantity" type="button" name="button">
                                                  <i class="fa-solid fa-minus" style="color: #FF9900"></i>
                                              </button>
                                          </div>
                                      </div>
-                                     <div class="col-4 price">
+                                     <div class="col-6 col-sm-6 col-md-6 col-lg-4 price">
 
                                          <p id="harga-p">Rp. {{ $cart->item->price * $cart->qty }}</p>
                                      </div>
-                                     <div class="col-1">
+                                     <div class="col-1 col-sm-1 col-md-1 col-lg-1 trash">
                                          {{-- <form action="{{ url('delete-keranjang/'. $cart->id)}}" method="POST">
                                          @csrf
                                          @method('DELETE') --}}
@@ -109,25 +108,25 @@
                  </div>
                  <div class="transaksi mt-5">
                      <div class="gambar">
-                         <img src="{{ asset('frontend/assets/image/Path 4.png') }}" alt="" style="width: 100%">
+                         <img src="{{ asset('frontend/assets/image/Path 4 New (1).png') }}" alt="" style="width: 100%">
                          <div class="check">
                              <h1>Ringkasan Belanja</h1>
                              <div class="row total mt-4">
-                                 <div class="col-6 text-start d-flex">
+                                 <div class="col-8 col-sm-8 col-md-8 col-lg-8 text-start d-flex">
                                      <p>Total Harga</p>
                                       <p class="px-2" id="selected">(0) Barang</p>
                                  </div>
-                                 <div class="col-6 status text-end">
+                                 <div class="col-4 col-sm-4 col-md-4 col-lg-4 status text-end">
                                      <input type="hidden" name="total_harga" id="total_harga" value="0">
                                      <p id="price"> Rp. 0</p>
                                  </div>
                              </div>
-                             <hr style="height: 4px; color: rgb(117, 106, 106)">
+                             <hr>
                              <div class="row total-harga">
                                  <div class="col-6 text-start">
                                      <p>Total Harga</p>
                                  </div>
-                                 <div class="col-6  text-end">
+                                 <div class="col-6">
                                      <p id="end-total"> Rp. 0</p>
                                  </div>
                              </div>
@@ -191,6 +190,7 @@
         .isi .produk {
             height: 44vh;
             overflow-y: scroll;
+            background: none;
         }
          .pilih-semua {
             display: flex;
@@ -205,6 +205,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        }
+        .isi .produk img {
+            width: 50%;
         }
         .isi .quantity {
         padding-top: 20px;
@@ -233,7 +236,10 @@
         .plus-btn img {
         margin-top: 2px;
         }
-
+        .check hr {
+            height: 4px;
+            color: rgb(117, 106, 106);
+        }
         button:focus,
         input:focus {
         outline:0;
@@ -303,9 +309,486 @@
         }
         .transaksi {
             margin-bottom: 70px;
-            /* position: absolute;
-            top: 100%;
-            left: 0%; */
+        }
+        .transaksi .gambar .total-harga #end-total {
+            text-align: right;
+        }
+        @media screen and (max-width: 1200px) {
+            .isi .produk {
+                height: 44vh;
+                overflow-y: scroll;
+                background: none;
+            }
+            .check .total-harga p{
+                color: #000000;
+                font-size: 15px;
+                font-weight: 600;
+            }
+            .btn-beli {
+                position: absolute;
+                top: 67%;
+            }
+            .data p {
+                color: white;
+                font-size: 17px;
+                font-weight: bold;
+            }
+        }
+        @media screen and (max-width: 992px) {
+            .isi .produk {
+                height: 40vh;
+                overflow-y: scroll;
+                background: none;
+            }
+            .isi .item {
+                margin-top: -31px;
+            }
+            .pilih-semua {
+                display: flex;
+                align-items: baseline;
+                font-weight: bold;
+                font-size: 14px;
+            }
+            .isi .title-atas {
+                font-size: 1.4em;
+                font-weight: bold;
+            }
+            .check hr {
+                height: 4px;
+                color: rgb(117, 106, 106);
+                margin-top: 4px;
+                margin-bottom: 6px;
+            }
+            .head-quantity {
+                width: 38%;
+            }
+            .isi .produk img {
+                width: 55%;
+            }
+            .pilih-semua .quantity {
+                display: inline-flex;
+            }
+            .quantity button[class*=btn] {
+                width: 22px;
+                height: 22px;
+                background-color: #E1E8EE;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+            }
+            .quantity input {
+                -webkit-appearance: none;
+                border: none;
+                text-align: center;
+                width: 32px;
+                font-size: 13px;
+                color: #43484D;
+                font-weight: 300;
+            }
+            .quantity .changeQuantity i {
+                color: #FF9900;
+                font-size: 11px;
+            }
+            /* Ringkasan */
+            .check {
+                position: absolute;
+                top: 5%;
+                width: 35%;
+            }
+            .check h1 {
+                font-size: 1.4em;
+                font-weight: bold;
+                color: #000000;
+                text-align: center;
+            }
+            .check .total p {
+                color: #000000;
+                font-size: 12px;
+                font-weight: 600;
+            }
+            .btn-beli {
+                position: absolute;
+                top: 71%;
+            }
+            .btn-beli .data {
+                text-align: center;
+                position: absolute;
+                top: 20%;
+            }
+            .data p {
+                color: white;
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
+        @media screen and (max-width: 767px) {
+        .isi .produk img {
+            width: 67%;
+        }
+        .isi .title-atas {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .pilih-semua .title{
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .quantity button[class*=btn] {
+            width: 18px;
+            height: 18px;
+            background-color: #E1E8EE;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+        .head-quantity .price p {
+            font-size: 12px;
+            text-align: end;
+        }
+        .head-quantity .trash {
+            width: 16%;
+        }
+           /* Ringkasan */
+         .transaksi .gambar img {
+            width: 100%;
+            height: 100px;
+        }
+        .check {
+            position: absolute;
+            top: 5%;
+            left: 4%;
+            width: 48%;
+        }
+        .check hr {
+            height: 4px;
+            color: rgb(0 0 0);
+            margin-top: -47px;
+            margin-bottom: 8px;
+            background: black;
+        }
+        .check h1 {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #000000;
+            text-align: left;
+        }
+        .check .total-harga {
+            margin-bottom: -15px;
+            display: none;
+        }
+        .check .total p {
+            color: #000000;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .check hr {
+            height: 4px;
+            color: rgb(0 0 0);
+            margin-top: -47px;
+            margin-bottom: 8px;
+            background: black;
+        }
+        .btn-beli {
+            position: absolute;
+            top: 25%;
+            width: 34%;
+            right: 0%;
+        }
+        .gambar-btn {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4vh;
+        }
+        .btn-beli .gambar-btn img {
+            height: 36px;
+            border-radius: 30px;
+            width: 60%;
+        }
+        .transaksi .gambar .total #price {
+            text-align: left;
+        }
+        }
+        @media screen and (max-width: 576px) {
+        .pilih-semua {
+            display: flex;
+            align-items: baseline;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+        .cart-semua .pilih-semua .datprod{
+            margin-left: -37px;
+        }
+        .pilih-semua .title {
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 6px;
+        }
+        .quantity input {
+            -webkit-appearance: none;
+            border: none;
+            text-align: center;
+            width: 17px;
+            font-size: 11px;
+            color: #43484D;
+            font-weight: 300;
+        }
+        .head-quantity .price p {
+            font-size: 11px;
+            text-align: end;
+        }
+        .isi .produk img {
+            width: 67%;
+            display: none;
+        }
+            /* Ringkasan */
+        .btn-beli .gambar-btn img {
+            height: 30px;
+            border-radius: 30px;
+            width: 50%;
+        }
+        .data p {
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .check h1 {
+            font-size: 1em;
+            font-weight: bold;
+            color: #000000;
+            text-align: left;
+            margin-top: 10px;
+        }
+        .check .total p {
+            color: #000000;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .check hr {
+            height: 4px;
+            color: rgb(0 0 0);
+            margin-top: -35px;
+            margin-bottom: 8px;
+            background: black;
+        }
+        }
+        @media screen and (max-width: 504px) {
+        .cart-semua .pilih-semua .datprod {
+            margin-left: -37px;
+            width: 44%;
+        }
+        .head-quantity {
+            width: 34%;
+        }
+        }
+        @media screen and (max-width: 490px) {
+        .cart-semua .pilih-semua .datprod {
+            margin-left: -37px;
+            width: 42%;
+        }
+        .head-quantity {
+            width: 40%;
+        }
+        .head-quantity .price p {
+            font-size: 10px;
+            text-align: end;
+            /* padding-left: 3px; */
+        }
+        }
+        @media screen and (max-width: 430px) {
+            .isi .title-atas {
+                font-size: 0.9em;
+                font-weight: bold;
+            }
+            .pilih-semua {
+                display: flex;
+                align-items: baseline;
+                font-weight: bold;
+                font-size: 11px;
+                margin-bottom: 7px;
+            }
+            .check h1 {
+                font-size: 0.9em;
+                font-weight: bold;
+                color: #000000;
+                text-align: left;
+                margin-top: 10px;
+            }
+            .check .total p {
+                color: #000000;
+                font-size: 9px;
+                font-weight: 600;
+            }
+            .btn-beli .gambar-btn img {
+                height: 26px;
+                border-radius: 30px;
+                width: 50%;
+            }
+            .btn-beli .data {
+                text-align: center;
+                position: absolute;
+                top: 25%;
+            }
+            .data p {
+                color: white;
+                font-size: 12px;
+                font-weight: bold;
+            }
+        }
+        @media screen and (max-width: 395px) {
+            .head-quantity {
+                width: 43%;
+            }
+        }
+        @media screen and (max-width: 377px) {
+            .head-quantity .price {
+                margin-left: 7px;
+            }
+            .head-quantity .trash {
+                width: 16%;
+                margin-left: -12px;
+            }
+            .transaksi .gambar .total #price {
+                text-align: left;
+                margin-left: -17px;
+            }
+        }
+        @media screen and (max-width: 355px) {
+            .head-quantity {
+                width: 45%;
+                margin-left: -8px;
+            }
+            .head-quantity .price {
+                margin-left: 10px;
+            }
+            .head-quantity .price p {
+                font-size: 9px;
+                text-align: end;
+            }
+            .check {
+                position: absolute;
+                top: 5%;
+                left: 4%;
+                width: 55%;
+            }
+            .quantity button[class*=btn] {
+                width: 16px;
+                height: 16px;
+                background-color: #E1E8EE;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+            }
+            .quantity input {
+                -webkit-appearance: none;
+                border: none;
+                text-align: center;
+                width: 17px;
+                font-size: 10px;
+                color: #43484D;
+                font-weight: 300;
+            }
+            .data p {
+                color: white;
+                font-size: 10px;
+                font-weight: bold;
+            }
+            .btn-beli .data {
+                text-align: center;
+                position: absolute;
+                top: 30%;
+            }
+        }
+        @media screen and (max-width: 330px) {
+            .quantity button[class*=btn] {
+                width: 15px;
+                height: 15px;
+                background-color: #E1E8EE;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+            }
+            .quantity .changeQuantity i {
+                color: #FF9900;
+                font-size: 9px;
+            }
+            .quantity input {
+                -webkit-appearance: none;
+                border: none;
+                text-align: center;
+                width: 17px;
+                font-size: 10px;
+                color: #43484D;
+                font-weight: 300;
+            }
+            .pilih-semua .title {
+                font-size: 0.7em;
+                font-weight: bold;
+            }
+            .head-quantity {
+                width: 46%;
+                margin-left: -7px;
+            }
+            .btn-beli .gambar-btn img {
+                height: 21px;
+                border-radius: 30px;
+                width: 50%;
+            }
+            .btn-beli .data {
+                text-align: center;
+                position: absolute;
+                top: 31%;
+            }
+            .data p {
+                color: white;
+                font-size: 9px;
+                font-weight: bold;
+            }
+            .check {
+                position: absolute;
+                top: 5%;
+                left: 4%;
+                width: 58%;
+            }
+            .head-quantity .price p {
+                font-size: 8px;
+                text-align: end;
+            }
+            .head-quantity .price {
+                margin-left: 8px;
+            }
+            @media screen and (max-width: 280px) {
+                .isi .title-atas {
+                    font-size: 0.8em;
+                    font-weight: bold;
+                }
+                .cart-semua .pilih-semua .datprod {
+                    margin-left: -32px;
+                    width: 42%;
+                }
+                .head-quantity {
+                    width: 49%;
+                    margin-left: -12px;
+                }
+                .check {
+                    position: absolute;
+                    top: 5%;
+                    left: 4%;
+                    width: 63%;
+                }
+                .check h1 {
+                    font-size: 0.8em;
+                    font-weight: bold;
+                    color: #000000;
+                    text-align: left;
+                    margin-top: 10px;
+                }
+            }
         }
     </style>
 @endpush

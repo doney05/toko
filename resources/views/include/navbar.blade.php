@@ -1,13 +1,21 @@
 <nav class="nav-first">
     <div class="wrapper">
-        <div class="logo"><img src="{{ asset('frontend/assets/image/Asset 1.png') }}" alt=""
-            style="width: 50%"></div>
+            <div class="title mt-3">
+                <div class="logo d-flex" style="font-weight: 900;
+                color: cornflowerblue;
+                justify-content: center;
+                margin-bottom: 8px;
+                height: 6vh;">
+                    <h1 style="font-weight: 900">JSP</h1>
+                    <p style="margin-top: 0px; font-size: 12px">Store</p>
+                </div>
+            </div>
         <input type="radio" name="slider" id="menu-btn">
         <input type="radio" name="slider" id="close-btn">
         <ul class="nav-links">
             <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
             <li>
-                <a href="{{ route('home') }}" class="{{ Request::path() === '/' ? 'bg-dark' : '' }}">Beranda</a>
+                <a href="{{ route('home') }}" class="{{ Request::path() === '/' ? 'bg-warning' : '' }}">Beranda</a>
             </li>
             <li>
                 <a href="#" class="desktop-item ">Produk</a>
@@ -22,39 +30,15 @@
                         <div class="row justify-content-center">
                             <ul class="mega-links">
                                 @foreach ($produk as $item)
-                                <li><a href="{{ url('produk/'.$item->id )}}" class="{{ Request::path() === 'produk/'.$item->id ? 'bg-dark' : '' }}">{{ $item->nama }}</a></li>
+                                <li><a href="{{ url('produk/'.$item->id )}}" class="{{ Request::path() === 'produk/'.$item->id ? 'bg-warning' : '' }}">{{ $item->nama }}</a></li>
                                 @endforeach
 
                             </ul>
                         </div>
-                        {{-- <div class="row justify-content-center">
-                            <ul class="mega-links">
-                                <li><a href="#">Yogobata</a></li>
-                                <li><a href="#">Ali Toys</a></li>
-                                <li><a href="#">SW Toys</a></li>
-                                <li><a href="#">MC Toys</a></li>
-                            </ul>
-                        </div>
-                        <div class="row justify-content-center">
-                            <ul class="mega-links">
-                                <li><a href="#">Yogobata</a></li>
-                                <li><a href="#">Ali Toys</a></li>
-                                <li><a href="#">SW Toys</a></li>
-                                <li><a href="#">MC Toys</a></li>
-                            </ul>
-                        </div>
-                        <div class="row justify-content-center">
-                            <ul class="mega-links">
-                                <li><a href="#">Yogobata</a></li>
-                                <li><a href="#">Ali Toys</a></li>
-                                <li><a href="#">SW Toys</a></li>
-                                <li><a href="#">MC Toys</a></li>
-                            </ul>
-                        </div> --}}
                     </div>
                 </div>
             </li>
-            <li><a href="{{ route('alamat')}}" class="alamat  {{ Request::path() === 'alamat' ? 'bg-dark' : '' }}">Alamat Kami</a></li>
+            <li><a href="{{ route('alamat')}}" class="alamat  {{ Request::path() === 'alamat' ? 'bg-warning' : '' }}">Alamat Kami</a></li>
             @guest
             <li>
                 <form action="{{ route('login.index') }}">
@@ -71,7 +55,7 @@
                         <li><a class="dropdown-item droplist"
                            href="{{ url('status/konfirmasi/'. Auth::user()->id ) }}">Status Pengiriman</a></li>
                            <hr style="    color: #ffff; height: 2px;">
-                        <li style="    margin-top: 26px;">
+                        <li style="   margin-top: 26px;">
                             <form  action="{{ route('logout')}}" method="POST">
                                 @csrf
                                     <button type="submit" style="margin-top: -10px; width: 81%; height: 40px;">Logout</button>

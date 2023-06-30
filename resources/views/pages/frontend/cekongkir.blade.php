@@ -15,7 +15,7 @@
              </div>
          </div>
          <div class="row detail">
-             <div class="col-8">
+             <div class="col-sm-8 col-md-8 col-lg-8">
                  <div class="alamat">
                      <h4>Alamat Pengirim</h4>
                      <p>
@@ -107,122 +107,37 @@
                      </div>
                  </div>
 
+                 <div class="scrol">
+                     @php $total = 0 @endphp
+                     @foreach ($detail as $item)
+                     @php $total += $item['cart']['item']['price'] * $item['cart']['qty'] @endphp
 
-                 @php $total = 0 @endphp
-                 @foreach ($detail as $item)
-                 @php $total += $item['cart']['item']['price'] * $item['cart']['qty'] @endphp
-
-                     <hr style="height: 4px; color: #ff8800">
-                     <div class="row produk">
-                         <h3>{{ $item['cart']['listitem']['name']}}</h3>
-                         <div class="col-12">
-                             <div class="images d-flex">
-                                 <img src="{{ Storage::url(($item['cart']['item']['thumbnail'])) }}" alt="" style="width: 25%">
-                                 <div class="row d-flex justify-content-center align-items-center w-100">
-                                     <div class="col-8">
-                                         <div class="title px-5">
-                                             <h5>{{ ($item['cart']['item']['name']) }}</h5>
-                                             <p> Rp. {{ number_format($item['cart']['item']['price'] * $item['cart']['qty'])}}</p>
+                         <hr style="height: 4px; color: #ff8800">
+                         <div class="row produk">
+                             <h3>{{ $item['cart']['listitem']['name']}}</h3>
+                             <div class="col-12">
+                                 <div class="images d-flex">
+                                     <img src="{{ Storage::url(($item['cart']['item']['thumbnail'])) }}" alt="" style="width: 25%">
+                                     <div class="row d-flex justify-content-center align-items-center w-100">
+                                         <div class="col-8">
+                                             <div class="title px-5">
+                                                 <h5>{{ ($item['cart']['item']['name']) }}</h5>
+                                                 <p> Rp. {{ number_format($item['cart']['item']['price'] * $item['cart']['qty'])}}</p>
+                                             </div>
+                                         </div>
+                                         <div class="col-4">
+                                            <p>{{ $item['cart']['qty']}} {{ $item['cart']['item']['jenis'] }}</p>
                                          </div>
                                      </div>
-                                     <div class="col-4">
-                                         <p>Quantity:  {{ $item['cart']['qty']}}
-                                     </div>
+
                                  </div>
-
                              </div>
                          </div>
-                         {{-- <div class="col-5 pengiriman text-end">
-                             <a href="#" class="btn-kirim">Pengiriman <i class="fa-sharp fa-solid fa-truck-fast fa-lg"></i></a>
-                             <p>J&T (Rp.19,000)
-                             <br> Estimasi : 1-2 Hari</p>
-                         </div> --}}
-                     </div>
-                 @endforeach
-
-
-
-
-                 {{-- <hr style="height: 2px; color: #ff8800; margin-top: 55px">
-                 <div class="row sub-total">
-                     <div class="col-7">
-                         <h3>Sub Total</h3>
-                         <p>Total Harga 2 Barang
-                            <br> Ongkos Kirim</p>
-                     </div>
-                     <div class="col-5 pengiriman text-end fw-bold">
-                         <h3>Rp. 1,000,000</h3>
-                         <p>Rp. 100,000
-                         <br> Rp. 10,000</p>
-                     </div>
+                     @endforeach
+                     <hr style="height: 5px; color: #ff8800; margin-top: 15px">
                  </div>
-                 <hr style="height: 5px; color: #ff8800; margin-top: 15px">
-                 <div class="row produk">
-                     <h3>Ali Toys</h3>
-                     <div class="col-7">
-                         <div class="images d-flex">
-                             <img src="{{ asset('frontend/assets/image/yogobata/star toys/1.png') }}" alt="" style="width: 25%">
-                             <div class="title px-5">
-                                 <h5>TRUK BOX SAMPAH</h5>
-                                 <p>Quantity: 90
-                                    <br> Rp. 1,000,000</p>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-5 pengiriman text-end">
-                         <a href="#" class="btn-kirim">Pengiriman <i class="fa-sharp fa-solid fa-truck-fast fa-lg"></i></a>
-                         <p>J&T (Rp.19,000)
-                         <br> Estimasi : 1-2 Hari</p>
-                     </div>
-                 </div>
-                 <hr style="height: 2px; color: #ff8800; margin-top: 55px">
-                 <div class="row sub-total">
-                     <div class="col-7">
-                         <h3>Sub Total</h3>
-                         <p>Total Harga 2 Barang
-                            <br> Ongkos Kirim</p>
-                     </div>
-                     <div class="col-5 pengiriman text-end fw-bold">
-                         <h3>Rp. 1,000,000</h3>
-                         <p>Rp. 100,000
-                         <br> Rp. 10,000</p>
-                     </div>
-                 </div>
-                 <hr style="height: 5px; color: #ff8800; margin-top: 15px">
-                 <div class="row produk">
-                     <h3>Ali Toys</h3>
-                     <div class="col-7">
-                         <div class="images d-flex">
-                             <img src="{{ asset('frontend/assets/image/yogobata/star toys/1.png') }}" alt="" style="width: 25%">
-                             <div class="title px-5">
-                                 <h5>TRUK BOX SAMPAH</h5>
-                                 <p>Quantity: 90
-                                    <br> Rp. 1,000,000</p>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-5 pengiriman text-end">
-                         <a href="#" class="btn-kirim">Pengiriman <i class="fa-sharp fa-solid fa-truck-fast fa-lg"></i></a>
-                         <p>J&T (Rp.19,000)
-                         <br> Estimasi : 1-2 Hari</p>
-                     </div>
-                 </div>
-                 <hr style="height: 2px; color: #ff8800; margin-top: 55px">
-                 <div class="row sub-total">
-                     <div class="col-7">
-                         <h3>Sub Total</h3>
-                         <p>Total Harga 2 Barang
-                            <br> Ongkos Kirim</p>
-                     </div>
-                     <div class="col-5 pengiriman text-end fw-bold">
-                         <h3>Rp. 1,000,000</h3>
-                         <p>Rp. 100,000
-                         <br> Rp. 10,000</p>
-                     </div>
-                 </div> --}}
-                 <hr style="height: 5px; color: #ff8800; margin-top: 15px">
              </div>
-             <div class="col-4">
+             <div class="col-sm-4 col-md-4 col-lg-4">
                  <div class="gambar">
                      <img src="{{ asset('frontend/assets/image/Path3.png') }}" alt="" style="width: 100%">
                      <div class="belanja">
@@ -243,7 +158,7 @@
                                  <p>Rp. {{ number_format($ongkos[0]['cost'][0]['value'])}}</p>
                              </div>
                          </div>
-                         <div class="row title-satu">
+                         <div class="row title-satu estimasi">
                              <div class="col-6">
                                  <p>Estimasi Tiba</p>
                              </div>
@@ -266,7 +181,7 @@
                                <!-- Modal Bayar-->
                                  <div class="modal fade" id="bayar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                      <div class="modal-dialog modal-dialog-centered" role="document">
-                                     <div class="modal-content">
+                                     <div class="modal-content pembayaran">
                                          <form action="{{ url('upload-bukti/'. Auth::user()->id)}}" method="post" enctype="multipart/form-data">
                                              @csrf
                                              @foreach ($detail as $item)
@@ -278,18 +193,11 @@
                                              <h4 class="modal-title fw-bold" id="exampleModalLongTitle">Selesaikan Pembayaran</h4>
                                              </div>
                                              <div class="modal-body">
-                                                 <div class="form-group text-start">
-                                                     <h6>BANK Kami</h6>
-                                                     <p>
-                                                         BANK BRI (a.n JSP) <br>
-                                                         BANK BCA (a.n JSP)
-                                                     </p>
-                                                 </div>
                                                  <div class="form-group text-start mt-3">
                                                      <h6 for="bank">Nomor Rekening</h6>
                                                      <p>
-                                                         5926 15643 65464 (BRI) <br>
-                                                         3396 64646 55636 (BCA)
+                                                         5926 15643 65464 (BRI a.n JSP) <br>
+                                                         3396 64646 55636 (BCA a.n JSP)
                                                      </p>
                                                  </div>
                                                  <div class="form-group text-start mt-3">
@@ -495,6 +403,525 @@
         .sub-total h3{
             font-weight: bold;
             font-size: 23px;
+        }
+        @media screen and (max-width: 1399px) {
+            .btn-bayar a {
+                text-decoration: none;
+                text-align: center;
+                padding: 10px 80px;
+                background: #FF6600;
+                color: rgb(0, 0, 0);
+                border-radius: 15px;
+                font-weight: bolder;
+                font-size: 15px;
+                position: absolute;
+                top: 90%;
+                border: 3px solid black;
+            }
+        }
+        @media screen and (max-width: 1199px) {
+            .total p {
+                color: rgb(0, 0, 0);
+                margin-bottom: 5px;
+                font-size: 18px;
+                font-weight: bolder;
+            }
+            .detail .cari-alamat #alamat {
+                text-decoration: none;
+                padding: 8px 14px;
+                background-color: #FFF6EA;
+                color: #A2A2A2;
+                border: 2px solid #FF9900;
+                border-radius: 15px;
+                font-size: 17px;
+                font-weight: bold;
+                box-shadow: 1px 2px 1px 0px #A2A2A2;
+            }
+            .btn-bayar a {
+                text-decoration: none;
+                text-align: center;
+                padding: 7px 55px;
+                background: #FF6600;
+                color: rgb(0, 0, 0);
+                border-radius: 15px;
+                font-weight: bolder;
+                font-size: 15px;
+                position: absolute;
+                top: 90%;
+                border: 3px solid black;
+            }
+        }
+        @media screen and (max-width: 991px) {
+            /* Previous */
+            .checkout .data-isi .name .link a i {
+                color: #ff8800;
+                font-size: 22px;
+            }
+            .checkout .data-isi .name h1 {
+                padding-left: 14px;
+                color: #FF9900;
+                font-size: 25px;
+            }
+            /* Address */
+            .detail .alamat {
+                margin-top: 20px;
+                margin-bottom: -20px;
+            }
+            .detail .alamat h4 {
+                font-weight: bolder;
+                font-size: 17px;
+            }
+            .detail .alamat p {
+                color: #707070;
+                font-weight: 600;
+                font-size: 12px;
+            }
+            .detail .cari-alamat #alamat {
+                text-decoration: none;
+                padding: 7px 15px;
+                background-color: #FFF6EA;
+                color: #A2A2A2;
+                border: 2px solid #FF9900;
+                border-radius: 15px;
+                font-size: 12px;
+                font-weight: bold;
+                box-shadow: 1px 2px 1px 0px #A2A2A2;
+            }
+            .pengiriman a {
+                text-decoration: none;
+                padding: 9px 30px;
+                color: rgb(0, 0, 0);
+                font-weight: bolder;
+                background: #FF9901;
+                border-radius: 15px;
+                box-shadow: 1px 2px 1px 0px #A2A2A2;
+                font-size: 13px;
+            }
+            /* Product */
+            .produk h3 {
+                font-size: 15px;
+                color: #000000;
+                font-weight: bolder;
+                margin-top: 10px;
+                margin-bottom: 15px;
+            }
+            .produk .images img{
+                width: 25%;
+                height: 10vh;
+            }
+            .produk .images h5 {
+                font-weight: bolder;
+                font-size: 14px;
+            }
+            .produk .images p {
+                line-height: 1.5em;
+                font-size: 13px;
+            }
+            /* Shopping */
+            .belanja h5 {
+                font-weight: bolder;
+                font-size: 17px;
+                color: rgb(0, 0, 0);
+                margin-bottom: 15px;
+            }
+            .title-satu p {
+                color: rgb(0, 0, 0);
+                margin-bottom: 5px;
+                font-size: 13px;
+            }
+            .total p {
+                color: rgb(0, 0, 0);
+                margin-bottom: 5px;
+                font-size: 13px;
+                font-weight: bolder;
+            }
+            .btn-bayar a {
+                text-decoration: none;
+                text-align: center;
+                padding: 3px 33px;
+                background: #FF6600;
+                color: rgb(0, 0, 0);
+                border-radius: 15px;
+                font-weight: bolder;
+                font-size: 13px;
+                position: absolute;
+                top: 90%;
+                border: 3px solid black;
+            }
+        }
+        @media screen and (max-width: 767px) {
+            .checkout .data-isi .name .link a i {
+                color: #ff8800;
+                font-size: 18px;
+            }
+            .checkout .data-isi .name h1 {
+                padding-left: 14px;
+                color: #FF9900;
+                font-size: 22px;
+            }
+            .detail .cari-alamat {
+                margin-top: 25px;
+                margin-bottom: 5px;
+            }
+            .detail .alamat h4 {
+                font-weight: bolder;
+                font-size: 13px;
+                margin-top: -14px;
+            }
+            .detail .alamat p {
+                color: #707070;
+                font-weight: 600;
+                font-size: 10px;
+                margin-top: -5px;
+            }
+            .detail .cari-alamat #alamat {
+                text-decoration: none;
+                padding: 5px 11px;
+                background-color: #FFF6EA;
+                color: #A2A2A2;
+                border: 2px solid #FF9900;
+                border-radius: 15px;
+                font-size: 9px;
+                font-weight: bold;
+                box-shadow: 1px 2px 1px 0px #A2A2A2;
+            }
+            .pengiriman a {
+                text-decoration: none;
+                padding: 7px 26px;
+                color: rgb(0, 0, 0);
+                font-weight: bolder;
+                background: #FF9901;
+                border-radius: 15px;
+                box-shadow: 1px 2px 1px 0px #A2A2A2;
+                font-size: 9px;
+            }
+            .scrol {
+                overflow-y: scroll;
+                height: 34vh;
+                overflow-x: hidden;
+            }
+            .produk {
+                margin-top: -5px;
+                margin-left: 2px;
+            }
+            .produk h3 {
+                font-size: 11px;
+                color: #2c1f1f;
+                font-weight: bolder;
+                margin-top: 10px;
+                margin-bottom: 15px;
+            }
+            .produk .images img {
+                width: 22%;
+                height: 7vh;
+                padding-top: 6px;
+                padding-left: 5px;
+            }
+            .produk .images h5 {
+                font-weight: bolder;
+                font-size: 9px;
+                padding-top: 6px;
+            }
+            .produk .images p {
+                line-height: 1.5em;
+                font-size: 9px;
+            }
+            .produk .col-12 {
+                width: 98%;
+            }
+            .produk .images .title {
+                width: 128%;
+            }
+            .gambar .belanja hr {
+                height: 2px;
+                color: white;
+                margin-top: 6px;
+                margin-bottom: 8px;
+            }
+            .belanja h5 {
+                font-weight: bolder;
+                font-size: 13px;
+                color: rgb(0, 0, 0);
+                margin-bottom: 15px;
+            }
+            .title-satu p {
+                color: rgb(0, 0, 0);
+                margin-bottom: 5px;
+                font-size: 9px;
+            }
+            .total p {
+                color: rgb(0, 0, 0);
+                margin-bottom: 5px;
+                font-size: 9px;
+                font-weight: bolder;
+            }
+            .btn-bayar a {
+                text-decoration: none;
+                text-align: center;
+                padding: 1px 18px;
+                background: #FF6600;
+                color: rgb(0, 0, 0);
+                border-radius: 15px;
+                font-weight: bolder;
+                font-size: 11px;
+                position: absolute;
+                top: 90%;
+                border: 1px solid black;
+            }
+        }
+        @media screen and (max-width: 575px)
+        {
+            .detail {
+                height: 0vh;
+            }
+            .detail .alamat h4 {
+                font-weight: bolder;
+                font-size: 15px;
+                margin-top: -14px;
+            }
+            .detail .cari-alamat #alamat {
+                text-decoration: none;
+                padding: 5px 11px;
+                background-color: #FFF6EA;
+                color: #A2A2A2;
+                border: 2px solid #FF9900;
+                border-radius: 15px;
+                font-size: 11px;
+                font-weight: bold;
+                box-shadow: 1px 2px 1px 0px #A2A2A2;
+            }
+            .pengiriman a {
+                text-decoration: none;
+                padding: 7px 11px;
+                color: rgb(0, 0, 0);
+                font-weight: bolder;
+                background: #FF9901;
+                border-radius: 15px;
+                box-shadow: 1px 2px 1px 0px #A2A2A2;
+                font-size: 11px;
+            }
+            .scrol {
+                overflow-y: scroll;
+                height: 44vh;
+                overflow-x: hidden;
+                margin-top: 7px;
+            }
+            .produk .images {
+                border: 2px solid #ff8800;
+                border-radius: 10px;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                height: 13vh;
+            }
+            .produk .images h5 {
+                font-weight: bolder;
+                font-size: 10px;
+                padding-top: 6px;
+            }
+            .produk .images p {
+                line-height: 1.5em;
+                font-size: 10px;
+            }
+            .gambar {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 66px;
+                margin-bottom: 15px;
+            }
+            .gambar img {
+                width: 100%;
+                height: 25vh;
+                border-radius: 25px;
+            }
+
+            .belanja {
+                position: absolute;
+                top: 8%;
+                left: 10%;
+                width: 80%;
+                height: 90%;
+            }
+            .belanja h5 {
+                font-weight: bolder;
+                font-size: 15px;
+                color: rgb(0, 0, 0);
+                margin-bottom: 15px;
+            }
+            .title-satu p {
+                color: rgb(0, 0, 0);
+                margin-bottom: 5px;
+                font-size: 11px;
+            }
+            .btn-bayar a {
+                text-decoration: none;
+                text-align: center;
+                padding: 1px 18px;
+                background: #FF6600;
+                color: rgb(0, 0, 0);
+                border-radius: 15px;
+                font-weight: bolder;
+                font-size: 13px;
+                position: absolute;
+                top: 79%;
+                border: 1px solid black;
+            }
+            .pembayaran{
+                height: 44vh;
+            }
+            .pembayaran h4 {
+                font-size: 17px;
+            }
+            .pembayaran .modal-body {
+                margin-top: -15px;
+            }
+            .pembayaran .modal-body h6 {
+                font-weight: bold;
+                font-size: 14px;
+            }
+            .pembayaran .modal-body p {
+                color: red;
+                font-size: 12px;
+            }
+            .pembayaran .form-control {
+                font-size: 12px;
+            }
+            .pembayaran button {
+                font-size: 12px;
+            }
+        }
+        @media screen and (max-width: 280px)
+        {
+            .produk {
+                margin-top: -5px;
+                margin-left: 0px;
+            }
+            .detail {
+                height: 0vh;
+            }
+            .detail .cari-alamat #alamat {
+                text-decoration: none;
+                padding: 5px 11px;
+                background-color: #FFF6EA;
+                color: #A2A2A2;
+                border: 2px solid #FF9900;
+                border-radius: 15px;
+                font-size: 10px;
+                font-weight: bold;
+                box-shadow: 1px 2px 1px 0px #A2A2A2;
+            }
+            .pengiriman a {
+                text-decoration: none;
+                padding: 7px 8px;
+                color: rgb(0, 0, 0);
+                font-weight: bolder;
+                background: #FF9901;
+                border-radius: 15px;
+                box-shadow: 1px 2px 1px 0px #A2A2A2;
+                font-size: 9px;
+            }
+            .produk .images {
+                border: 2px solid #ff8800;
+                border-radius: 10px;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                height: 12vh;
+            }
+            .produk .images .title {
+                width: 156%;
+            }
+            .scrol {
+                overflow-y: scroll;
+                height: 47vh;
+                overflow-x: hidden;
+            }
+            .title-satu p {
+                color: rgb(0, 0, 0);
+                margin-bottom: 5px;
+                font-size: 9px;
+            }
+            .gambar {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: -11px;
+            }
+            .gambar img {
+                width: 100%;
+                margin-top: 32px;
+                height: 24vh;
+            }
+            .belanja {
+                position: absolute;
+                top: 23%;
+                left: 10%;
+                width: 80%;
+                height: 67%;
+            }
+            .belanja h5 {
+                font-weight: bolder;
+                font-size: 15px;
+                color: rgb(0, 0, 0);
+                margin-bottom: 8px;
+            }
+            .belanja .estimasi {
+                display: none;
+            }
+            .btn-bayar a {
+                text-decoration: none;
+                text-align: center;
+                padding: 1px 18px;
+                background: #FF6600;
+                color: rgb(0, 0, 0);
+                border-radius: 15px;
+                font-weight: bolder;
+                font-size: 11px;
+                position: absolute;
+                top: 85%;
+                border: 1px solid black;
+            }
+            .modal-content {
+                height: 53vh;
+            }
+            .modal-content h5 {
+                font-size: 14px;
+            }
+            .modal-body {
+                margin-top: -10px;
+            }
+            .modal-body label{
+                font-size: 12px;
+            }
+            .modal-body .form-control {
+                display: block;
+                width: 100%;
+                padding: 5px 0.75rem;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #212529;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid #ced4da;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                border-radius: 0.25rem;
+                transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            }
+            .modal-body textarea {
+                height: 11vh;
+            }
+            .modal-footer button {
+                font-size: 12px;
+            }
+            .pengiriman .modal-content {
+                height: 45vh;
+            }
         }
     </style>
 @endpush

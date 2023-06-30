@@ -1,7 +1,118 @@
 @extends('layout.frontend.app')
 
 @section('content')
-<section class="header first-header">
+
+<section class="baner" style="height: 50vh; padding-top: 6%;">
+    <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{{ asset('frontend/assets/image/banner/header 1.png')}}" class="w-100" alt="Second Slide">
+              </div>
+              <div class="carousel-item">
+                <img src="{{ asset('frontend/assets/image/banner/Header 2.png')}}" class="w-100" alt="Third Slide">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+         </div>
+    </div>
+</section>
+<section class="brand" style="margin-top: -40px">
+    <div class="container">
+        <div class="row">
+            <div class="col-5" style="color: #D9D9D9">
+                <hr>
+            </div>
+            <div class="col-2">
+                <h3 class="text-center fw-bold">
+                    Official Brand
+                </h3>
+            </div>
+            <div class="col-5"  style="color: #D9D9D9">
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="all-brand">
+    <div class="container">
+        <div class="row" style="width: 104%;">
+            @foreach ($produk as $item)
+            <a href="{{ url('produk/'. $item->id)}}" class="xzoom-container brand mx-2 my-3">
+                <div class="col-2">
+                    <img src="{{ Storage::url($item->banner) }}" alt="" class="x-zoom" style="width: 50%;">
+                </div>
+            </a>
+            @endforeach
+        </div>
+    </div>
+</section>
+<section class="garis">
+    <div class="container mt-5 mb-5">
+        <hr style="color: #D9D9D9">
+    </div>
+</section>
+<section class="content mt-3">
+    <div class="gambar" style="height: 50vh; background: #D9D9D9; margin-bottom: 50px">
+        <div class="row" style="height: 47vh">
+            <div class="col-6">
+                <div class="title">
+                    <h5>Temukan produk untuk kebutuhan Anda</h5>
+                    <a href="#">Lihat Produk &nbsp; <i class="fa-solid fa-arrow-right-to-bracket mt-1"></i></a>
+                </div>
+                <div class="images">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="footer mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 text-center">
+               <div class="title mt-3">
+                <div class="logo d-flex" style="font-weight: 900; color: cornflowerblue; justify-content: center; margin-bottom: -18px">
+                    <h1 style="font-weight: 900">JSP</h1>
+                    <p style="margin-top: 20px">Store</p>
+                </div>
+                <h2 style=" color: #006096; font-weight: bold;">Jaya Setya Plastik</h2>
+               </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="head">
+                            <h6 style="font-weight: bold">Head Office</h6>
+                            <p style="font-size: 13px">Jalan Raya Demak-Kudus KM. 19 Karanganyar Demak Jawa Tengah Kode Pos. 59582</p>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <h6 style="font-weight: bold">Contact Us</h6>
+                        <p style="font-size: 13px">Instagram <br>
+                            Facebook <br>
+                            WhatsApp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{-- <section class="header first-header">
     <div class="image-banner" style="    position: relative;
     display: flex;
     justify-content: end;">
@@ -19,74 +130,21 @@
         </div>
 
       </div>
-
-   {{-- <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
-       <div class="carousel-indicators">
-         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-       </div>
-       <div class="carousel-inner">
-         <div class="carousel-item active">
-           <img src="{{ asset('frontend/assets/image/Design-Flat-Syaf-New14.jpg')}}" class="w-100" alt="...">
-         </div>
-         <div class="carousel-item">
-           <img src="{{ asset('frontend/assets/image/Design-Flat-Syaf-New14.jpg')}}" class="w-100" alt="...">
-         </div>
-         <div class="carousel-item">
-           <img src="{{ asset('frontend/assets/image/Design-Flat-Syaf-New14.jpg')}}" class="w-100" alt="...">
-         </div>
-       </div>
-       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-         <span class="visually-hidden">Previous</span>
-       </button>
-       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-         <span class="visually-hidden">Next</span>
-       </button>
-     </div> --}}
-</section>
-<section class="header second-header" id="parallax">
- <div class="image">
-    <img src="{{ asset('frontend/assets/image/Design-Flat-Syaf-New11.jpg') }}" alt="">
- </div>
+</section> --}}
+{{-- <section class="header second-header" id="parallax">
+    <div class="image">
+        <img src="{{ asset('frontend/assets/image/Design-Flat-Syaf-New11.jpg') }}" alt="">
+    </div>
  <div class="title-footer" style="    text-align: center;
- background: #FF9E6E;
- height: 13vh;">
+    background: #FF9E6E;
+    height: 13vh;">
     <h6 style="    padding-top: 40px;
     font-size: 19px;
     font-weight: bold;">CV. Jaya Setya Plastik</h6>
     <p style="font-weight: bold;
     font-size: 19px;">Jl. Raya Demak-Kudus KM. 19, Kec. Karanganyar, Kab. Demak, Jawa Tengah  59582    </p>
 </div>
- {{-- <div class="container-fluid content" data-aos="fade-down-right" data-aos-duration="1500">
-   <div class="row profile">
-     <div class="col-4" style="display: flex; justify-content: center; align-items: center;">
-         <h1>Pengembangan Perusahaan <br>
-           Jaya Setya Plastik</h1>
-     </div>
-     <div class="col-8">
-       <div class="video" data-aos="fade-down-left" data-aos-duration="1500">
-         <iframe src="{{ asset('frontend/assets/video/COMPANY-PROFILE.mp4') }}"  frameborder="0"
-         ></iframe> -
-         <video src="/assets/video/COMPANY-PROFILE.mp4" class="w-100"
-       type="video/mp4"></video>
-       </div>
-     </div>
-   </div>
- </div> --}}
-     <!-- <div class="image">
-
-       <div class="title" data-aos="fade-down" data-aos-duration="1500">
-         <h1>Biji Plastik
-           <br>
-           --------------
-         </h1>
-         <p>Bahan dasar pembuatan mainan</p>
-       </div>
-     </div> -->
-</section>
+</section> --}}
 {{-- <section class="header content-produk">
  <div class="container-fluid">
      <div class="title" data-aos="fade-down-left" data-aos-duration="1500">
@@ -186,14 +244,107 @@
 @push('style')
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+<link rel="stylesheet" href="{{ asset('frontend/assets/xzoom/xzoom.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/xzoom/xzoom.min.css') }}">
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Assistant&family=Roboto+Slab&family=Ubuntu&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Kanit:ital@1&family=Roboto:ital,wght@0,100;0,400;0,700;0,900;1,300&family=Titan+One&family=Work+Sans:wght@700;800;900&family=Ysabeau+SC:wght@1&display=swap');
     * {
-      scroll-behavior: smooth;
-      font-family: 'Assistant', sans-serif;
+        font-family: 'Roboto', sans-serif;
+
     }
-    .first-header img{
+    .content .gambar .images {
+        height: 47vh;
+        background: #535353;
+        margin-top: 15px;
+        position: relative;
+    }
+    .content .gambar .images::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.5;
+        background: url("frontend/assets/image/mainan.jpg") no-repeat center center;
+        background-size: cover;
+    }
+    .content .gambar .title{
+        position: absolute;
+        z-index: 2;
+        color: white;
+        margin-top: 190px;
+        margin-left: 112px;
+        width: 27%;
+    }
+    .content .gambar .title h5{
+        font-size: 40px;
+        font-weight: bolder;
+        margin-bottom: 50px;
+    }
+    .content .gambar .title a{
+        text-decoration: none;
+        background: #ff9900;
+        color: white;
+        padding: 7px 22px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .content .gambar .title a:hover{
+        text-decoration: none;
+        background: #da8302;
+        color: white;
+        padding: 7px 22px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .content .gambar .img {
+        height: 47vh;
+        background: #535353;
+        margin-top: 15px;
+        position: relative;
+    }
+    .content .gambar .img::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.5;
+        background: url("frontend/assets/image/mainan2.jpg") no-repeat center center;
+        background-size: cover;
+    }
+    .all-brand .row a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #D9D9D9;
+        box-shadow: 3px 0px 18px 1px #D9D9D9;
+        width: 15%;
+        height: 13vh;
+    }
+    .all-brand .row a:hover{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #bdbdbd;
+        box-shadow: 3px 0px 18px 1px #bdbdbd;
+        width: 15%;
+        height: 13vh;
+    }
+    .all-brand .row a .col-2{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    /* .first-header img{
         width: 100%;
         height: 100vh;
     }
@@ -219,7 +370,7 @@
     }
     .second-header img{
         width: 100%;
-    }
+    } */
     /* .second-header .image{
       position: relative;
       background: rgb(0, 0, 0);
@@ -303,7 +454,7 @@
         padding: 15px 25px;
     } */
 
-    .content-produk .title h1{
+    /* .content-produk .title h1{
       color: #5488ff;
       text-align: center;
       font-weight: bolder;
@@ -315,11 +466,11 @@
         margin-top: 25%;
         margin-bottom: 25%;
          width: 80%;
-        /* padding-left: 10%; */
+        padding-left: 10%;
     }
     .content-produk .slider-list {
       padding-left: 10%;
-    }
+    } */
 
     /* .footer {
       background-color: #E9F8F9;
@@ -1030,6 +1181,8 @@
 @push('script')
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="{{ asset('frontend/assets/zoomsl/zoomsl.js') }}"></script>
+<script src="{{ asset('frontend/assets/xzoom/xzoom.min.js') }}"></script>
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.slim.js"></script> -->
 <script src="assets/slick-1.8.1/slick/slick.js"></script>
@@ -1044,6 +1197,12 @@
         });
 </script> -->
 <script>
+    $(document).ready(function(){
+        $('.x-zoom').imagezoomsl({
+            zoomrange: [3,2],
+            zoomwidth: 100
+        });
+    });
   $(document).ready(function(){
     AOS.init({
         offset: 120,

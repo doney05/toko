@@ -18,7 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('product_items_id')->nullable();
             $table->foreign('product_items_id')->references('id')->on('product_items');
             $table->unsignedBigInteger('payments_id')->nullable();
-            $table->foreign('payments_id')->references('id')->on('payments');
+            $table->foreign('payments_id')->references('id')->on('payments')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->integer('qty');
             $table->timestamps();
         });
